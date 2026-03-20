@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>*5050# SmartUSSD Registry</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#00d28d;--purple:#4b44e0;
+  --grad:linear-gradient(135deg,#00d28d 0%,#4b44e0 100%);
+  --bg:#0f0f0f;--surface:#1a1a1a;--card:#222;--card2:#2a2a2a;
+  --border:#2e2e2e;--text:#f0f0f0;--sub:#888;--danger:#ff4d4d;
+  --amber:#f59e0b;--glow:0 4px 24px rgba(0,210,141,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* HEADER */
+.hdr{position:sticky;top:0;z-index:400;background:rgba(15,15,15,0.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:15px 20px;display:flex;align-items:center;justify-content:space-between}
+.hdr-logo{font-size:1.1rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* SEARCH SECTION */
+.hero{padding:40px 20px;text-align:center;background:radial-gradient(circle at top right, rgba(0,210,141,0.05), transparent)}
+.hero h1{font-size:1.8rem;font-weight:800;margin-bottom:10px}
+.hero p{color:var(--sub);font-size:0.9rem;margin-bottom:25px}
+
+.search-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:8px;display:flex;max-width:500px;margin:0 auto;box-shadow:var(--glow)}
+.search-box input{flex:1;background:none;border:none;padding:12px 15px;color:var(--text);font-size:1rem;font-family:'JetBrains Mono',monospace}
+.search-box input:focus{outline:none}
+.search-box button{background:var(--grad);color:#fff;padding:0 20px;border-radius:12px;font-weight:700;font-size:0.85rem}
+
+/* CATEGORIES */
+.cat-scroll{display:flex;gap:10px;overflow-x:auto;padding:20px;scrollbar-width:none}
+.cat-scroll::-webkit-scrollbar{display:none}
+.cat-pill{padding:8px 18px;background:var(--card);border:1px solid var(--border);border-radius:20px;font-size:0.75rem;font-weight:700;color:var(--sub);white-space:nowrap;transition:0.2s}
+.cat-pill.on{background:rgba(0,210,141,0.1);border-color:var(--green);color:var(--green)}
+
+/* REGISTRY LIST */
+.registry{padding:0 20px 100px}
+.reg-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px;margin-bottom:15px;transition:0.3s}
+.reg-card:hover{border-color:var(--green);transform:translateY(-3px)}
+.reg-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:15px}
+.reg-code{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700;color:var(--green)}
+.reg-status{font-size:0.6rem;font-weight:800;padding:4px 8px;border-radius:6px;text-transform:uppercase}
+.st-avail{background:rgba(0,210,141,0.1);color:var(--green)}
+.st-taken{background:rgba(255,77,77,0.1);color:var(--danger)}
+
+.reg-feat{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.feat{font-size:0.7rem;color:var(--sub);display:flex;align-items:center;gap:6px}
+.feat-ico{font-size:0.9rem}
+
+/* BOTTOM ACTION */
+.cta-bar{position:fixed;bottom:20px;left:20px;right:20px;background:var(--grad);padding:18px;border-radius:20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,0.5);z-index:500}
+.cta-txt b{display:block;font-size:0.9rem}
+.cta-txt small{font-size:0.7rem;opacity:0.8}
+.cta-btn{background:#fff;color:#000;padding:10px 20px;border-radius:12px;font-weight:800;font-size:0.8rem}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-logo">*5050# Registry</div>
+  <div style="font-size: 0.7rem; font-weight: 700; color: var(--sub);">MARCH 2026 UPDATE</div>
+</header>
+
+<section class="hero">
+  <h1>Claim Your Custom Code</h1>
+  <p>Search for available SmartUSSD extensions for your business.</p>
+  
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="e.g. PIZZA_HUB" onkeyup="checkInput()">
+    <button onclick="searchCode()">Check Availability</button>
+  </div>
+</section>
+
+<div class="cat-scroll">
+  <div class="cat-pill on">All Categories</div>
+  <div class="cat-pill">Retail & Shops</div>
+  <div class="cat-pill">Health & Med</div>
+  <div class="cat-pill">Finance/Fintech</div>
+  <div class="cat-pill">Education</div>
+  <div class="cat-pill">Logistics</div>
+</div>
+
+<section class="registry" id="registryList">
+  <div class="reg-card">
+    <div class="reg-top">
+      <div>
+        <div class="reg-code">*5050*RETAIL#</div>
+        <div style="font-size: 0.75rem; font-weight: 600; margin-top: 4px;">General Retail Tier</div>
+      </div>
+      <span class="reg-status st-avail">Available</span>
+    </div>
+    <div class="reg-feat">
+      <div class="feat"><span class="feat-ico">🛒</span> Catalog Bot</div>
+      <div class="feat"><span class="feat-ico">💳</span> Wallet Ready</div>
+    </div>
+  </div>
+
+  <div class="reg-card">
+    <div class="reg-top">
+      <div>
+        <div class="reg-code">*5050*HEALTH#</div>
+        <div style="font-size: 0.75rem; font-weight: 600; margin-top: 4px;">Premium Medical Tier</div>
+      </div>
+      <span class="reg-status st-taken">Reserved</span>
+    </div>
+    <div class="reg-feat">
+      <div class="feat"><span class="feat-ico">📅</span> Booking System</div>
+      <div class="feat"><span class="feat-ico">🔐</span> HIPAA-Ready</div>
+    </div>
+  </div>
+
+</section>
+
+<div class="cta-bar">
+  <div class="cta-txt">
+    <b>Don't see your name?</b>
+    <small>Request a custom 3-digit shortcode</small>
+  </div>
+  <button class="cta-btn" onclick="window.location.href='https://wa.me/2348157505037'">Chat Admin</button>
+</div>
+
+<script>
+const codes = [
+    { name: "RETAIL", tier: "Standard", cat: "Retail", status: "Available" },
+    { name: "HEALTH", tier: "Premium", cat: "Health", status: "Reserved" },
+    { name: "SCHOOL", tier: "Standard", cat: "Education", status: "Available" },
+    { name: "PAY", tier: "Fintech", cat: "Finance", status: "Taken" }
+];
+
+function checkInput() {
+    let val = document.getElementById('searchInput').value.toUpperCase();
+    document.getElementById('searchInput').value = val.replace(/\s/g, '_');
+}
+
+function searchCode() {
+    const query = document.getElementById('searchInput').value.toUpperCase();
+    if(!query) return;
+
+    const list = document.getElementById('registryList');
+    // Simulate real-time check
+    list.innerHTML = `
+        <div class="reg-card" style="border-color: var(--green); background: rgba(0,210,141,0.05);">
+            <div class="reg-top">
+                <div>
+                    <div class="reg-code">*5050*${query}#</div>
+                    <div style="font-size: 0.75rem; font-weight: 600; margin-top: 4px;">Custom Business Tier</div>
+                </div>
+                <span class="reg-status st-avail">Instantly Available</span>
+            </div>
+            <p style="font-size: 0.7rem; color: var(--sub); margin-bottom: 15px;">Secure this extension now and deploy your WhatsApp bot in 14 days.</p>
+            <button class="cta-btn" style="width:100%; background:var(--grad); color:#fff;" onclick="startOnboarding('${query}')">Register This Code</button>
+        </div>
+    ` + list.innerHTML;
+}
+
+function startOnboarding(code) {
+    alert("Initiating Onboarding for *5050*" + code + "#\nConnecting to WhatsApp Gateway...");
+    window.location.href = "https://wa.me/2348157505037?text=I%20want%20to%20register%20the%20SmartUSSD%20code:%20*5050*" + code + "%23";
+}
+
+// Category Filtering
+document.querySelectorAll('.cat-pill').forEach(pill => {
+    pill.addEventListener('click', function() {
+        document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('on'));
+        this.classList.add('on');
+    });
+});
+</script>
+
+</body>
+</html>
