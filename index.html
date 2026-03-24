@@ -400,7 +400,7 @@ input:checked+.slider::before{transform:translateX(20px);background:#fff;}
       <div class="search-box">
         <input type="text" id="mSearch" placeholder="suggest agent 3-digit code" maxlength="30"
           oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9_]/g,'')">
-        <button class="search-btn" onclick="checkCode()">REQUEST THIS CODE</button>
+        <button class="search-btn" onclick="checkCode()">CHECK</button>
       </div>
       <div class="cats">
         <div class="cat on" onclick="filterCat(this,'all')">All Tiers</div>
@@ -736,11 +736,11 @@ function checkCode(){
   card.id='searchResult'; card.className='reg-card';
   card.style.cssText='border-color:var(--green);';
   card.innerHTML=`
-    <div class="r-status status-avail">Available</div>
-    <div class="r-meta">Custom Extension &bull; Verified</div>
+    <div class="r-status status-avail">AVAILABLE</div>
+    <div class="r-meta">Custom Extension &bull; VERIFIED</div>
     <div class="r-code">*5050*${raw}#</div>
-    <p class="r-desc">This code is eligible for instant 24/7 business automation.</p>
-    <button class="activate-btn" onclick="claimCode('${raw}')">PAY & HIRE *5050*${raw}# \u2192</button>
+    <p class="r-desc">This code is subject to search and if found available is eligible for your purchase.</p>
+    <button class="activate-btn" onclick="claimCode('${raw}')">🔍SEARCH *5050*${raw}# \u2192</button>
   `;
   list.insertAdjacentElement('afterbegin',card);
   card.scrollIntoView({behavior:'smooth',block:'nearest'});
